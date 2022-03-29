@@ -1,0 +1,97 @@
+<%= form_with(model: product) do |form| %>
+  <% if product.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+  <div>
+    <%= form.label :image, class: "text-gray-700 dark:text-gray-200" %>
+    <br>
+    <%= form.file_field :image %>
+  </div>
+
+  <br>
+  <div>
+    <%= form.label :name,"Name", class: "text-gray-700 dark:text-gray-200" %>
+    <%= form.text_field :name, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+  </div>
+
+  <div >
+    <%= form.label :catagory, style: "display: block" %>
+    <%= form.select :catagory, ['option1', 'option2', 'option3', 'option4' ], 
+  {}, { class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" }  %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+  </div>
+
+  <div>
+    <%= form.label :price, style: "display: block" %>
+    <%= form.number_field :price, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+  </div>
+
+  <div>
+    <%= form.label :old_price,"Old Price (if none put: 0 )", style: "display: block" %>
+    <%= form.number_field :old_price, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+  </div>
+
+  <div>
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"  %>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :length,"Length(inches)", style: "display: block" %>
+    <%= form.number_field :length, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+  </div>
+
+  <div>
+    <%= form.label :width,"Width(inches)", style: "display: block" %>
+    <%= form.number_field :width, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+  </div>
+  
+  <div>
+    <%= form.label :height,"Height(inches)", style: "display: block" %>
+    <%= form.number_field :height, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+  </div>
+
+  <div>
+    <%= form.label :weight,"Weight(Pounds)", style: "display: block" %>
+    <%= form.number_field :weight, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+  </div>
+  
+<br>
+  <div>
+    <%= form.label :on_sale, style: "display: block" %>
+    <%= form.check_box :on_sale %>
+  </div>
+
+  <div>
+    <%= form.label :sold_out,"SOLD OUT -- if checked manually this product will not be purchaseable (will automatically ceck if inventory reaches 0)", style: "display: block" %>
+    <%= form.check_box :sold_out %>
+  </div>
+
+  <div>
+    <%= form.label :featured, style: "display: block" %>
+    <%= form.check_box :featured %>
+  </div>
+
+  
+
+  <div class="m-2 px-2 py-2 text-center font-medium text-white transition-colors duration-200 transform bg-green-600 rounded-md hover:bg-green-500">
+    <%= form.submit %>
+  </div>
+  </section>
+<% end %>

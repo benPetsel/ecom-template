@@ -1,0 +1,60 @@
+
+
+
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Completed orders</h1>
+    
+  </div>
+
+  <div id="completed_orders" class="flex flex-col py-10  shadow-md sm:rounded-lg">
+  <table>
+  <thead class="bg-gray-400 dark:bg-gray-700">
+    <tr>
+                                <th scope="col" class="py-3 flex-1 basis-1/4 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400">
+                                </th>
+
+                                <th scope="col" class="py-3 flex-1 basis-1/4 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400">
+                                Address</th>
+                                
+                                <th scope="col" class="py-3 flex-1 basis-1/4 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400">
+                                </th>
+
+                                <th scope="col" class="py-3 flex-1 basis-1/4 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400">
+                                order completed<th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @eachOrder.each do |order_idee|%>
+    <tr class="bg-white  border-gray-700">
+
+        <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        <%= link_to 'View Order', completed_orders_show_path(:show => { :sessioninfo => order_idee })  %>
+        </td>
+        <% @order = @completed_orders.find_by order_id: order_idee %>
+    
+        <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        <%= @order.address  %>
+        </td>
+
+        <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        - - - - 
+        </td>
+            
+        <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        <%= @order.updated_at  %>
+        </td>
+
+    
+</tr>
+<%end%>
+</tbody>
+    </table>
+  </div>
+</div>
+
+

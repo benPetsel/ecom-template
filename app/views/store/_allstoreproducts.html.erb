@@ -1,0 +1,76 @@
+<% @products.each do |product| %>
+
+
+  <div class=" border grid grid-cols-1 grid-flow-row items-center  rounded-lg  bg-white <%=product.catagory%>">
+<%= link_to store_show_path(product.id) do %>
+<%if product.sold_out?%>
+  <div class="bg-indigo-100 font-bold w-20">
+  <p>
+  SOLD OUT
+  </p>
+  </div>
+<%end%>
+  <% if product.image.attached? %>
+
+<!-- to remove the flip card thing swap it with this div 
+<div class="items-center h-64 flex p-4 rounded-lg shadow-lg bg-white">
+ <%= image_tag product.image, style: "width: 200px", class: "mx-auto" %>
+ </div>
+ also I might have the class in the wrong spot. if it looks wrong 
+ remove the below classes from the div and add them to the image
+items-center h-64 flex p-4 rounded-lg shadow-lg bg-white
+
+the span below is the colored price container
+<span class=" items-center h-8 bg-indigo-200 text-indigo-600 text-sm px-2 rounded">$<%= product.price %></span>
+-->
+
+<div class="items-center h-64 flex p-4 rounded-lg ">
+ <%= image_tag product.image, style: "width: 200px", class: "mx-auto" %>
+ </div>
+
+
+<!-- the css for flip-card is located in stylesheets/application.tailwind.css 
+    <div class="flip-card items-center h-64  bg-white">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+        <%= image_tag product.image, style: "width: 200px", class: "mx-auto my-5" %>
+        </div>
+        <div class="flip-card-back ">
+        <h1><%= product.name %></h1> 
+        <p></p> 
+        <p><%= product.description %></p>
+        </div>
+      </div>
+    </div>
+    <%= button_to "Add to Cart", add_to_cart_path(product.id), method: :post, class: " my-1 px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" %>
+        -->
+        
+      
+   <%end%>
+   
+			
+			<div class="grid grid-flow-row auto-rows-max">
+				<div class="mx-auto">
+					<a href="#" class="uppercase tracking-widest text-lg"><%= product.name %></a>         
+				</div>
+        <div class="flex flex-row mx-auto">
+				<p class="">$<%= product.price %> </p>
+        <% if product.old_price > 0 %><p class="line-through px-2 text-gray-400"> $<%= product.price %></p><%end%>
+        </div>
+        <% if product.quantity < 10 && !product.sold_out? %>
+        <div class="mx-auto">
+        <p  class="uppercase text-xs">
+        only <%= product.quantity %> left in stock
+        </p>
+        </div>
+        <%end%>
+			</div>
+      <div class="mx-auto ">
+       
+      </div>
+    </div>
+        
+  <% end %>
+<%end%>
+  
+    

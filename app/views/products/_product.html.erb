@@ -1,0 +1,75 @@
+<div id="<%= dom_id product %>" class="columns-2">
+  
+
+  <% if product.image.attached? %>
+        <p >
+          <%= image_tag product.image, style: "width: 200px; display: block" %>
+        </p>
+   <%end%>
+
+   <p  >
+    <strong >Name:</strong>
+    <%= product.name %>
+  </p>
+
+  <p>
+    <strong>Catagory:</strong>
+    <%= product.catagory %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= product.description %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= product.price %>
+  </p>
+
+  <p>
+    <strong>Old price:</strong>
+    <%= product.old_price %>
+  </p>
+
+  <p>
+    <strong>On sale:</strong>
+    <%= product.on_sale %>
+  </p>
+
+  <p>
+    <strong>Sold out:</strong>
+    <%= product.sold_out %>
+  </p>
+
+  <p>
+    <strong>Featured:</strong>
+    <%= product.featured %>
+  </p>
+
+  <p>
+    <strong>Quantity:</strong>
+    <%= product.quantity %>
+  </p>
+
+  <p>
+    <strong>Height:</strong>
+    <%= product.height %>
+  </p>
+  
+  <p>
+    <strong>length:</strong>
+    <%= product.length %>
+  </p>
+
+   <p>
+    <strong>Width:</strong>
+    <%= product.width %>
+  </p>
+
+  <p>
+    <strong>Weight:</strong>
+    <%= product.weight %>
+  </p>
+
+</div>

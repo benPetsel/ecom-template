@@ -1,0 +1,165 @@
+
+<div  class="grid lg:grid-cols-4 grid-cols-1  py-50">
+
+<div class="  col-span-3 bg-gray-300">
+<div class="flex max-w-lg justify-between lg:mx-auto mx-10">
+ <h2 class="text-3xl  font-bold tracking-tight text-gray-500 dark:text-white">
+                Your Cart
+            </h2>
+        
+            <%= link_to "continue Shopping",  root_path , class: "px-4 py-2 my-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" %>
+
+        
+</div>
+
+<div class="flex h-0.5 max-w-lg justify-between lg:mx-auto mx-10 bg-slate-500 "></div>
+
+<div class="flex max-w-lg justify-between lg:mx-auto mx-10">
+<p>Cart Subtotal: </p>
+<p id="display_total"></p>
+ 
+</div>
+
+
+
+
+        <%= render "cartitems" %>
+
+</div>
+<div  class=" col-span-1 bg-gray-500">
+        
+        <%= form_with url: "shipping_info", method: :post do |form| %>
+            <div class="grid mx-5 lg:grid-cols-1 gap-6 mt-4 ">
+               
+            
+                <div>
+                    <%= form.label :street, class: "text-gray-200 dark:text-gray-200"  %>
+                    <%= form.text_field :street, :value => session[:forminfo]['street'] ,required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+                </div>
+
+                <div>
+                    <%= form.label :city, class: "text-gray-200 dark:text-gray-200"  %>
+                    <%= form.text_field :city, :value => session[:forminfo]['city'] ,required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+                </div>
+
+                <div>
+                    <%= form.label :state, class: "text-gray-200 dark:text-gray-200"  %>
+                    <%= form.text_field :state, :value => session[:forminfo]['state'] ,required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+                </div>
+
+                 <div>
+                    <%= form.label :zip, class: "text-gray-200 dark:text-gray-200"  %>
+                    <%= form.text_field :zip, :value => session[:forminfo]['zip'] ,required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+                </div>
+
+                <button type='submit' class="px-6 mx-auto py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Get Shipping Rates</button>
+            </div>
+            <%end%>
+       
+
+        <!-- after asddress for some reasaon replace maybe ,locals: {name: "To Address"}  
+        
+        <%= render 'address' %>
+            <%= render 'parcel_details' %>-->
+
+        <%if @shipmentRates != nil  %>
+                <%= form_with url: store_create_path, method: :post, remote: true do |form| %>
+                
+                    
+                            <div class="flex flex-col py-10  shadow-md sm:rounded-lg">
+                    <table class="  " >
+                        <thead class="bg-gray-400 dark:bg-gray-700">
+                            <tr>
+                                <th scope="col" class="py-3 flex-1 basis-1/4 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400">
+                                Carrier</th>
+
+                                <th scope="col" class="py-3 flex-1 basis-1/4 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400">
+                                Rate</th>
+                                
+                                <th scope="col" class="py-3 flex-1 basis-1/4 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400">
+                                Service</th>
+
+                                <th scope="col" class="py-3 flex-1 basis-1/4 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400">
+                                Select Rate<th>
+                            </tr>
+                        </thead>
+                            <% @shipmentRates.rates.each do |rate| %>
+                                <tr class="bg-white  border-gray-700">
+                                    <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <%= rate.carrier %></td>
+
+                                    <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                    ><%= rate.rate %></td>
+
+                                    <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <%= rate.service %></td>
+
+                                        <td class=" py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        
+                                            
+                                           <%= form.radio_button :shipping_selection, rate, class: " form-radio " , required: true   %>
+                                        
+                                    
+                                        </td>
+                                </tr>
+                                <% puts rate %>
+                            <% end %>
+                    </table>
+                    </div>
+                   
+                    <div>
+                     <%= submit_tag "checkout", class: "w-full py-10 text-2xl tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" %>
+                     </div>
+                    <%end%>
+                    
+
+        <%else%>
+         <div class="flex  w-3/4 my-5 mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <div class="flex items-center justify-center w-8 bg-blue-500">
+            <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM21.6667 28.3333H18.3334V25H21.6667V28.3333ZM21.6667 21.6666H18.3334V11.6666H21.6667V21.6666Z"/>
+            </svg>
+        </div>
+        
+        <div class="px-4 py-2 -mx-3">
+            <div class="mx-3">
+                <span class="font-semibold text-blue-500 dark:text-blue-400">Please</span>
+                <p class="text-sm text-gray-600 dark:text-gray-200">enter shipping info for rates </p>
+            </div>
+        </div>
+    </div>
+        <%end%>
+</div>
+
+</div>
+
+<script>
+$(document).ready(function(){
+  cart_subtotal_count();
+});
+
+
+//the purpose of this function is to display the previwed totals 
+// of the selected items. 
+function cart_subtotal_count(){
+    //grab elements with class .total_calculate
+					const the_cart = document.querySelectorAll(".total_calculate");
+					var cart_total = 0;
+					var item_cost
+                    var how_many
+                    // itterate through and grab text value and id
+                    //convert them to numbers then
+                    //multipluy them and add them to the running total
+                    // item_cost is the cost of the item and retrived from the text
+                    // how_many is the how many of the item are in the cart and retrived from the id
+					the_cart.forEach((element) => {
+						item_cost = element.textContent.replace('$', '');
+                        how_many = element.id
+						item_cost = parseInt(item_cost);
+                        how_many = parseInt(how_many);
+					  cart_total = cart_total + (item_cost * how_many) ;
+					  console.log(cart_total);
+					});
+					document.getElementById("display_total").innerHTML = "$" + cart_total;
+				};
+</script>

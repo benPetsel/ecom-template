@@ -1,0 +1,41 @@
+
+<h1 class="text-3xl">Product Category Page Title</h1>
+<p style="color: green"><%= notice %></p>
+	 <div class="p-5">
+        <%= link_to "Add New product", new_product_path, class: "px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" %>
+  </div>
+  
+<div id="products"  class="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-6 gap-y-12 w-full mt-6">
+  <% @products.each do |product| %>
+
+
+  <div>
+  <% if product.image.attached? %>
+        
+        <div class="flex items-center h-64 rounded-lg shadow-lg bg-white">
+       <%= image_tag product.image, style: "width: 200px", class: "mx-auto" %>
+       </div>
+      
+   <%end%>
+			
+			<div class="flex items-center justify-between mt-3">
+				<div>
+					<a href="#" class="font-medium"><%= product.name %></a>
+					<a class="flex items-center" href="#">
+						<span class="text-xs font-medium text-gray-600">by</span>
+						<span class="text-xs font-medium ml-1 text-indigo-500">Store Name</span>
+					</a>
+				</div>
+				<span class="flex items-center h-8 bg-indigo-200 text-indigo-600 text-sm px-2 rounded">$<%= product.price %></span>
+			</div>
+      <div class="flex">
+      <%= link_to "View Details", product, class: "m-2 px-2 text-center font-medium text-white transition-colors duration-200 transform bg-green-600 rounded-md hover:bg-green-500" %>
+      <%= link_to "Edit this product", edit_product_path(product), class: "text-center font-medium justify-self-end m-2 px-2 text-center text-white transition-colors duration-200 transform bg-yellow-600 rounded-md hover:bg-yellow-500" %>
+      </div>
+      <hr class=" my-6 border-gray-300 dark:border-gray-400" />
+		</div>
+  <% end %>
+</div>
+
+
+

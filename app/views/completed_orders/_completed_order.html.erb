@@ -1,0 +1,52 @@
+<div id="<%= dom_id completed_order %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Order:</strong>
+    <%= completed_order.order_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Item:</strong>
+    <%= completed_order.item_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Item name:</strong>
+    <%= completed_order.item_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Quantity:</strong>
+    <%= completed_order.quantity %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Charge:</strong>
+    <%= completed_order.charge %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Address:</strong>
+    <%= completed_order.address %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Rate:</strong>
+    <%= completed_order.rate_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Shipment:</strong>
+    <%= completed_order.shipment_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Carrier acct:</strong>
+    <%= completed_order.carrier_acct_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this completed order", completed_order, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this completed order', edit_completed_order_path(completed_order), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

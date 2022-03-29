@@ -1,0 +1,99 @@
+# README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+https://tailwindcss.com/docs/guides/ruby-on-rails
+
+Using cssbundling-rails gem
+https://github.com/rails/cssbundling-rails
+used this advice: https://noelrappin.com/blog/2021/09/rails-7-and-javascript/
+
+
+* Deployment instructions
+
+* ...
+for immidiate styling updates / css rebuilding
+ When developing front end:
+    Run: 'yarn build:css --watch ' in one terminal
+    AND
+    Run the server in a seperate terminal.
+
+The shopping functionallity usses sessions and is currently set up as follows:
+Session[:carts] is initialised as a hash object -> {}
+Next
+This object stores the ID as the key and the quantity as the value
+IE: {id => quantity , id => quantity} 
+this is how the cart keeps track of its contents per user. 
+This MAY be updated to store nested hashes IF more than quantity information is needed. 
+**This will be based on the session storage limit, but im pretty sure will suffice for a shopping cart. 
+
+looks like shipping is going to use easypost as a solution
+the api is now integrated :D 
+
+Stripe API is integrated for payment processing
+For stripes webhooks I have integrated the gem 'stripe_event'
+at the behest of this tutorial: 
+https://dev.to/maxencehenneron/handling-stripe-webhooks-with-ruby-on-rails-4bb7
+
+#TO DO add prices and products to the stripe dashbord programatically 
+      # https://stripe.com/docs/products-prices/manage-prices?dashboard-or-api=api
+      # this will need to be integrated into the product craetion portal soon.
+      # this is also important for more accurate tax collection as Stripe requires a price object 
+      #to calculate tax
+
+
+      FOR ME:: 
+      Tut for image uploads- https://levelup.gitconnected.com/rails-image-upload-101-f9bf245e389b
+      
+
+      to do:
+
+      push to remote git repo 
+
+      decrement number of products after sale 
+
+      mobile!! Menu hamburger needs javascript 
+      Mobile!! shoping cart items need UI correction
+
+
+      make sure people cant buy more inventory than is avalable !!
+
+        package size algorithm 
+        add owner sign in using devise -- tutorial twards bottom -- https://www.honeybadger.io/blog/rails-app-aws-s3/
+
+    MIGHT BE ABLE TO SKIP -- add table to host checkout ids, completed shipping booleen and new bool. 
+      The id from this table will look up the corespoding list of matching ids in the completed_orders table
+
+      IN PROGRESS -- ad ui elements for - sold out - old price - see more to all products  
+
+      AFTER LAUNCH -- add table for user management data- about text- logo manage - about me photo - Shop text - brand text - FAQ
+
+      add active analitics --- tutorial bootrails -- https://www.bootrails.com/blog/rails-analytics-made-simple/
+
+      
+
+      same tut to add amazon buckets for multi picture upload management -- https://www.honeybadger.io/blog/rails-app-aws-s3/
+
+       
+
+      add home page with featured option? 
+
+      DONE -- contact page 
+
