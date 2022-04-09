@@ -41,6 +41,9 @@ class WebhooksController < ApplicationController
       shipping_details = Stripe::ShippingRate.retrieve(
         checkout_session.shipping_options[0].shipping_rate,
       )
+      puts "below is costomer details"
+      customer_email  = checkout_session.customer_details.email
+      customer_name  = checkout_session.customer_details.name
       puts "SHIPPING DETAILS BELOW"
       shipping_details.each {|key, value| puts "#{key} is #{value}" }
       shipping_details = shipping_details.metadata
@@ -50,6 +53,8 @@ class WebhooksController < ApplicationController
       current_product = Stripe::Product.retrieve(n.price.product) 
       #adds all products and sales tax to completed orders database
         CompletedOrder.create(
+          name: customer_name ,
+          email: customer_email ,
           order_id:checkout_session.id ,
            item_id:current_product.metadata.item_id.to_i ,
             item_name:n.description ,
@@ -59,10 +64,22 @@ class WebhooksController < ApplicationController
                 rate_id:"N/A" ,
                 shipment_id:"N/A" ,
                  carrier_acct_id:"N/A" )
+          if current_product.metadata.item_id.to_i != 0
+          object = Product.find(current_product.metadata.item_id.to_i) 
+          object.quantity = object.quantity - n.quantity.to_i
+              if object.quantity < 1
+                object.sold_out = true
+              end
+          object.save!
+          end
           
       }
+
+      puts "completed object modification"
       # adds shipping to database
         CompletedOrder.create(
+          name: customer_name ,
+          email: customer_email ,
           order_id:checkout_session.id ,
            item_id: "shipping" ,
             item_name: 'shipping total' ,

@@ -4,13 +4,30 @@ class StoreController < ApplicationController
   
   skip_before_action :verify_authenticity_token
   before_action do
-    
-   if !session[:forminfo] 
-    session[:forminfo] = {'street' => "", 'city' => "", 
-          'state' => "", 'zip' => "", 
-          'service' => "", 'shipment_id' => "", 'shipment_cost' => 0,
-          'carrier' => ""}
-   end
+    @products = Product.all
+      if !session[:forminfo] 
+        session[:forminfo] = {'street' => "", 'city' => "", 
+              'state' => "", 'zip' => "", 
+              'service' => "", 'shipment_id' => "", 'shipment_cost' => 0,
+              'carrier' => ""}
+      end
+
+      whole_cart = session[:cart]
+
+      whole_cart.each do |cart_item| 
+        item = @products.find(cart_item[0])
+        if item.quantity < 1
+          whole_cart.delete(cart_item[0])
+          item.sold_out = true
+          item.save!
+        elsif cart_item[1] > item.quantity 
+          cart_item[1] = 1
+        else
+          #no action yet
+        end
+      end
+
+
   end
 
   configure do
@@ -44,14 +61,31 @@ class StoreController < ApplicationController
 def cart
   @products = Product.all
   @cart = session[:cart]
+  
   if session[:shipmentrate]
   @shipmentRates = EasyPost::Shipment.retrieve(session[:shipmentrate]) 
+  
   end
   
 end
 
 def store_show
   @product =  Product.find(params[:id]) 
+
+  if @product.sold_out?
+    @button_text = "Sold Out"
+    @path = store_show_path(@product.id)
+    @get_post = :get
+    @disabled = true
+    @class = "w-2/5 my-1 px-4 py-2 font-medium tracking-wide border-2 border-black bg-gray-400  text-gray-800 capitalize "
+  else
+    @button_text = "Add to Cart"
+    @path = add_to_cart_path(@product.id)
+    @get_post = :post
+    @disabled = false
+    @class = "w-2/5 my-1 px-4 py-2 font-medium tracking-wide text-blue-600 capitalize transition-colors duration-500 
+    transform border-blue-500 border-2 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+  end
 end
 
 def contact
@@ -73,7 +107,13 @@ def delete_item
 end
 
 def add_one
+  this_product =  Product.find(params[:id]) 
+  purchase_quantity = session[:cart][params[:id]]
+  if (purchase_quantity + 1) > this_product.quantity
+
+  else
   session[:cart][params[:id]] += 1 
+  end
   redirect_to cart_path
 end
 
@@ -215,6 +255,8 @@ end
 
 
 def success;
+session[:cart] = {}
+session[:shipmentrate] = nil
 end
 
 def cancel;

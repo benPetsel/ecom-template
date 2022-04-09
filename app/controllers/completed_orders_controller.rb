@@ -3,7 +3,7 @@ class CompletedOrdersController < ApplicationController
   layout 'portal'
   # GET /completed_orders or /completed_orders.json
   def index
-    @completed_orders = CompletedOrder.all
+    @completed_orders = CompletedOrder.all.order(created_at: :desc)
     @eachOrder = []
     @completed_orders.each do |line_item|
         if @eachOrder.include? line_item.order_id
@@ -80,6 +80,6 @@ class CompletedOrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def completed_order_params
-      params.require(:completed_order).permit(:sessioninfo, :order_id, :item_id, :item_name, :quantity, :charge, :address, :rate_id, :shipment_id, :carrier_acct_id)
+      params.require(:completed_order).permit(:name, :email, :sessioninfo, :order_id, :item_id, :item_name, :quantity, :charge, :address, :rate_id, :shipment_id, :carrier_acct_id)
     end
 end

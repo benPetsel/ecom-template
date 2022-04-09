@@ -19,7 +19,10 @@
                                 </th>
 
                                 <th scope="col" class="py-3 flex-1 basis-1/4 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400">
-                                Address</th>
+                                Name</th>
+
+                                <th scope="col" class="py-3 flex-1 basis-1/4 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400">
+                                Email</th>
                                 
                                 <th scope="col" class="py-3 flex-1 basis-1/4 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400">
                                 </th>
@@ -38,7 +41,11 @@
         <% @order = @completed_orders.find_by order_id: order_idee %>
     
         <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-        <%= @order.address  %>
+        <%= @order.name  %>
+        </td>
+
+        <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        <%= @order.email %>
         </td>
 
         <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">

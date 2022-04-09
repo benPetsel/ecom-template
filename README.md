@@ -65,35 +65,40 @@ https://dev.to/maxencehenneron/handling-stripe-webhooks-with-ruby-on-rails-4bb7
 
       to do:
 
-      push to remote git repo 
-
-      decrement number of products after sale 
-
-      mobile!! Menu hamburger needs javascript 
+      package size algorithm 
+        add owner sign in using devise -- tutorial twards bottom -- https://www.honeybadger.io/blog/rails-app-aws-s3/
+         add home page with featured option? 
+         back to shop button while veiwing products
+         add left in stock while veiwing products
+         add shipping description duration to shipment rates
+         add shipping duration to cart controller stripe shipping create
+         add quick about page
+          visual style with data-aos
       Mobile!! shoping cart items need UI correction
 
-
-      make sure people cant buy more inventory than is avalable !!
-
-        package size algorithm 
-        add owner sign in using devise -- tutorial twards bottom -- https://www.honeybadger.io/blog/rails-app-aws-s3/
-
+      DONE clear cart and shipping rates
+      DONE collect name and email for orders
+      DONE order complete purchases decending 
+      DONE fix address collection problem
+      DONE -- ad ui elements for - sold out - old price - see more to all products  
+      DONE -- contact page 
+      DONE -- push to remote git repo 
+      DONE decrement number of products after sale 
+      DONE done make sure people cant buy more inventory than is avalable !!
+      DONE switch item to sold out if database reads 0 quantity
+      DONE mobile!! Menu hamburger needs javascript !!! (script now located in _majornav partial. Consider moving) !!!
+        
     MIGHT BE ABLE TO SKIP -- add table to host checkout ids, completed shipping booleen and new bool. 
       The id from this table will look up the corespoding list of matching ids in the completed_orders table
 
-      IN PROGRESS -- ad ui elements for - sold out - old price - see more to all products  
-
+     
       AFTER LAUNCH -- add table for user management data- about text- logo manage - about me photo - Shop text - brand text - FAQ
-
       add active analitics --- tutorial bootrails -- https://www.bootrails.com/blog/rails-analytics-made-simple/
-
-      
 
       same tut to add amazon buckets for multi picture upload management -- https://www.honeybadger.io/blog/rails-app-aws-s3/
 
        
 
-      add home page with featured option? 
-
-      DONE -- contact page 
+     
+      
 

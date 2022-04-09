@@ -7,7 +7,7 @@
             <h1 class="text-5xl font-bold"><%=@product.name%></h1>
             <h2 class="text-3xl font-light px-3 py-5">$<%=@product.price%></h2>
             <div class="flex h-0.5 max-w-lg   bg-slate-500 "></div>
-            <p class="text-xl py-5 pr-10 "><%=@product.description%></p>
+            <p class="text-lg py-5 pr-10 "><%=@product.description%></p>
 
            
             
@@ -23,9 +23,9 @@
                     </div>
             </div>
 
-             <%= button_to "Add to Cart", add_to_cart_path(@product.id), method: :post, class:
-              "w-2/5 my-1 px-4 py-2 font-medium tracking-wide text-blue-600 capitalize transition-colors duration-500 
-              transform border-blue-500 border-2 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" %>
+             <%= button_to @button_text, @path, method: @get_post, class:
+              @class,
+               :disabled => @disabled %>
         </div>
  </div>
 </div>

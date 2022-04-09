@@ -55,7 +55,7 @@ the span below is the colored price container
 				</div>
         <div class="flex flex-row mx-auto">
 				<p class="">$<%= product.price %> </p>
-        <% if product.old_price > 0 %><p class="line-through px-2 text-gray-400"> $<%= product.price %></p><%end%>
+        <% if product.old_price > 0 %><p class="line-through px-2 text-gray-400"> $<%= product.old_price %></p><%end%>
         </div>
         <% if product.quantity < 10 && !product.sold_out? %>
         <div class="mx-auto">
