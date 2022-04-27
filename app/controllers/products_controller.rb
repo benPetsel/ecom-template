@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
   layout 'portal'
+  
 
 
   # GET /products or /products.json
@@ -67,6 +69,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:height, :width, :length, :weight,  :name, :catagory, :description, :price, :old_price, :on_sale, :sold_out, :featured, :quantity, :image)
+      params.require(:product).permit(:height, :width, :length, :weight,  :name, :catagory, :description, :price, :old_price, :on_sale, :sold_out, :featured, :quantity, :image, :secondary_image, :secondary_heading, :photos_attached)
     end
 end

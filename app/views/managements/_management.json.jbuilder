@@ -1,0 +1,2 @@
+json.extract! management, :id, :contact_page, :about_page, :about_text, :shop_text, :phone_card, :phone_card_text, :phone, :brand_name, :email_card, :email_card_text, :email, :buisness_card, :buisness_address, :address_card_text, :footer_text, :home_page_text, :testimonials, :testimonial_1_name, :testimonial_1_text, :testimonial_2_name, :testimonial_2_text, :testimonial_3_name, :testimonial_3_text, :twitter, :facebook, :instagram, :created_at, :updated_at
+json.url management_url(management, format: :json)

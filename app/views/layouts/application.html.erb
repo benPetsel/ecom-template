@@ -9,16 +9,26 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
-    
-    
+  
+ 
   </head>
 
   <body >
-   <%= render 'layouts/majornav'%>
+    <header>
+        <%= render 'layouts/majornav'%>
+        
+     </header>
    
+    <main>
+    
+    <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
       <%= yield %>
+    </main>
+
+    <footer>
     <%= render 'layouts/majorfooter'%>
+    </footer>
 
    
   </body>

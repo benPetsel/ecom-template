@@ -9,15 +9,6 @@
       <table>
   <thead class="bg-gray-400 dark:bg-gray-700">
     <tr>
-    <th scope="col" class="py-3 flex-1 basis-1/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400"
-    >id</th>
-      
-      <th scope="col" class="py-3 flex-1 basis-1/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400"
-      >...</th>
-     
-      <th scope="col" class="py-3 flex-1 basis-1/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400"
-      >item_id</th>
-     
       <th scope="col" class="py-3 flex-1 basis-1/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400"
       >Name</th>
     
@@ -29,6 +20,9 @@
      
       <th scope="col" class="py-3 flex-1 basis-4/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400"
       >address</th>
+
+      <th scope="col" class="py-3 flex-1 basis-4/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400"
+      >Attached photo?</th>
      
       
       
@@ -40,25 +34,25 @@
     <% @show_full_order.each do |order| %>
  <tr class="bg-white  border-gray-700">
       <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
-      >id</td>
-      
-      <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
-      >...</td>
-      
-      <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
-      ><%= order.item_id %></td>
-      
-      <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
       ><%= order.item_name %></td>
       
       <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
       ><%= order.quantity %></td>
       
       <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
-      ><%= order.charge %></td>
+      ><%= order.charge.to_f / 100.0 %></td>
       
       <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
       ><%= order.address %></td>
+
+      <%if order.secID %>
+          <%if order.secID > 0%>
+              <% pic_item = @all_images.where(:sesh_id => order.session_identity ).where(:item_id => order.item_id ).where(:secondary_id => order.secID).first %>
+              <th scope="col" class="py-3 flex-1 basis-4/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase dark:text-gray-400">
+              <%= image_tag pic_item.image_for_item, style: "width: 50px", class: "mx-auto" %>
+              </th>
+          <%end%>
+      <%end%>
       
       
 
@@ -68,10 +62,12 @@
 </table>
     </div>
 
-    <%= link_to 'Edit this completed_order', edit_completed_order_path(@completed_order), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+     <!--
+    < link_to 'Edit this completed_order', edit_completed_order_path(@completed_order), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
-      <%= button_to 'Destroy this completed_order', completed_order_path(@completed_order), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      < button_to 'Destroy this completed_order', completed_order_path(@completed_order), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     </div>
+    -->
     <%= link_to 'Back to completed_orders', completed_orders_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

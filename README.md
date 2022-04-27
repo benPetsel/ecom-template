@@ -25,7 +25,7 @@ Using cssbundling-rails gem
 https://github.com/rails/cssbundling-rails
 used this advice: https://noelrappin.com/blog/2021/09/rails-7-and-javascript/
 
-
+The devise gem is bing used as the encription solution for logged in owners
 * Deployment instructions
 
 * ...
@@ -65,17 +65,44 @@ https://dev.to/maxencehenneron/handling-stripe-webhooks-with-ruby-on-rails-4bb7
 
       to do:
 
-      package size algorithm 
-        add owner sign in using devise -- tutorial twards bottom -- https://www.honeybadger.io/blog/rails-app-aws-s3/
-         add home page with featured option? 
-         back to shop button while veiwing products
-         add left in stock while veiwing products
-         add shipping description duration to shipment rates
-         add shipping duration to cart controller stripe shipping create
-         add quick about page
-          visual style with data-aos
-      Mobile!! shoping cart items need UI correction
+      !!enviroment variables!!
 
+        
+
+        
+         LATER - add shipping duration to cart controller stripe shipping create
+         THis belongs inside the store controller inside the shipping stripe create action under DISPLAY NAME
+         and before METADATA
+         delivery_estimate: {
+          minimum: {
+            unit: 'business_day',
+            value: 1,
+          },
+          maximum: {
+            unit: 'business_day',
+            value: 1,
+          },
+        },
+
+
+      DONE -  add shipping description duration to shipment rates
+      DONE - seed master pass
+      DONE - seed cms
+      DONE- configure managements menu
+      DONE - remove destroy and edit actions from completed orders    
+      DONE - fix pictures on contact page
+      DONE - build entire cms in one night like a crackhead 
+      DONE - add quick about page
+      DONE - secondary_heading
+      DONE - add left in stock while veiwing products
+      DONE - back to shop button while veiwing products
+      DONE - ON SALE add UI 
+      DONE - Mobile!! shoping cart items need UI correction
+      DONE - no check out with empty cart
+      DONE - FOR NOW - package size algorithm 
+      DONE style devise logins
+      DONE add owner sign in using devise -- tutorial twards bottom -- https://www.honeybadger.io/blog/rails-app-aws-s3/
+      DONE user creation ONLY by admins (in this apps case any signed in user is considered an admin)
       DONE clear cart and shipping rates
       DONE collect name and email for orders
       DONE order complete purchases decending 
@@ -88,12 +115,19 @@ https://dev.to/maxencehenneron/handling-stripe-webhooks-with-ruby-on-rails-4bb7
       DONE switch item to sold out if database reads 0 quantity
       DONE mobile!! Menu hamburger needs javascript !!! (script now located in _majornav partial. Consider moving) !!!
         
+        LATER - controll image upload size
+        LATER - visual style with data-aos
+        LATER -add home page with featured option?
+
+
     MIGHT BE ABLE TO SKIP -- add table to host checkout ids, completed shipping booleen and new bool. 
       The id from this table will look up the corespoding list of matching ids in the completed_orders table
 
      
       AFTER LAUNCH -- add table for user management data- about text- logo manage - about me photo - Shop text - brand text - FAQ
       add active analitics --- tutorial bootrails -- https://www.bootrails.com/blog/rails-analytics-made-simple/
+
+      reviews.io as possible review system 
 
       same tut to add amazon buckets for multi picture upload management -- https://www.honeybadger.io/blog/rails-app-aws-s3/
 

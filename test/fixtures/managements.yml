@@ -1,0 +1,57 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contact_page: false
+  about_page: false
+  about_text: MyText
+  shop_text: MyText
+  phone_card: false
+  phone_card_text: MyText
+  phone: MyString
+  brand_name: MyString
+  email_card: false
+  email_card_text: MyText
+  email: MyString
+  buisness_card: false
+  buisness_address: MyText
+  address_card_text: MyText
+  footer_text: MyText
+  home_page_text: MyText
+  testimonials: false
+  testimonial_1_name: MyString
+  testimonial_1_text: MyText
+  testimonial_2_name: MyString
+  testimonial_2_text: MyText
+  testimonial_3_name: MyString
+  testimonial_3_text: MyText
+  twitter: MyString
+  facebook: MyString
+  instagram: MyString
+
+two:
+  contact_page: false
+  about_page: false
+  about_text: MyText
+  shop_text: MyText
+  phone_card: false
+  phone_card_text: MyText
+  phone: MyString
+  brand_name: MyString
+  email_card: false
+  email_card_text: MyText
+  email: MyString
+  buisness_card: false
+  buisness_address: MyText
+  address_card_text: MyText
+  footer_text: MyText
+  home_page_text: MyText
+  testimonials: false
+  testimonial_1_name: MyString
+  testimonial_1_text: MyText
+  testimonial_2_name: MyString
+  testimonial_2_text: MyText
+  testimonial_3_name: MyString
+  testimonial_3_text: MyText
+  twitter: MyString
+  facebook: MyString
+  instagram: MyString

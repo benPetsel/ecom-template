@@ -1,7 +1,13 @@
 <div id="<%= dom_id completed_order %>">
+
   <p class="my-5">
     <strong class="block font-medium mb-1">Order:</strong>
     <%= completed_order.order_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">sess ID:</strong>
+    <%= completed_order.session_identity %>
   </p>
 
   <p class="my-5">

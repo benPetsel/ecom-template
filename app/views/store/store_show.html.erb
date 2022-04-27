@@ -1,18 +1,34 @@
 <div class="flex flex-col  py-5 lg:flex-row">
 <div class=" flex basis-2/3 items-center  p-4  rounded-lg ">
- <%= image_tag @product.image, class: "mx-auto w-1/2" %>
+
+ 
+  <%= render "product_photos" %>
  </div>
  <div class="flex basis-1/3 items-center bg-gray-300 mx-5 p-4  ">
         <div class="w-4/5">
             <h1 class="text-5xl font-bold"><%=@product.name%></h1>
-            <h2 class="text-3xl font-light px-3 py-5">$<%=@product.price%></h2>
+            
+            <div class="flex flex-row text-3xl font-light px-3 py-5">$<%=@product.price%>
+            <% if @product.old_price > 0 %><p class="line-through px-2 text-gray-400"> $<%= @product.old_price %></p><%end%>
+            </div>
+            <div class="">
+		       <a href="#" class="uppercase text-xs"><%= @product.secondary_heading %></a>         
+	       </div>
+            
+               <% if @product.quantity < 10 && !@product.sold_out? %>
+                     <div class="mx-auto">
+                     <p  class="text-rose-600 uppercase text-xs">
+                            only <%= @product.quantity %> left in stock
+                     </p>
+                     </div>
+              <%end%>
             <div class="flex h-0.5 max-w-lg   bg-slate-500 "></div>
             <p class="text-lg py-5 pr-10 "><%=@product.description%></p>
 
-           
+         
             
-            <div class="flex flex-row my-5">
-                    <i class="basis-1/5 bi bi-rulers text-gray-500 text-4xl pt-5" ></i>
+            <div class="flex flex-row text-xs my-5">
+                    <i class="basis-1/5 bi bi-rulers text-gray-500 text-xl pt-5" ></i>
                     <div class="basis-2/5">
                     <h3 class="my-3 uppercase">Length: <%=@product.length%> inches</h3>
                     <h3 class="my-3 uppercase">Width: <%=@product.width%> inches</h3>
@@ -22,10 +38,47 @@
                     <h3 class="my-3 uppercase">Weight: <%=@product.weight%>lbs</h3>
                     </div>
             </div>
-
+            <div>
              <%= button_to @button_text, @path, method: @get_post, class:
               @class,
                :disabled => @disabled %>
+               </div>
+
+              <div class="my-10">
+               <%= link_to "continue Shopping",  root_path , class: " px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-gray-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" %>
+              </div>
+               
         </div>
  </div>
 </div>
+
+<script>
+let slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script>

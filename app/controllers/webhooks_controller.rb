@@ -9,7 +9,7 @@ class WebhooksController < ApplicationController
 
   
   def create 
-    endpoint_secret = "whsec_184a94c089d1c724a46b64031bb16e17202b107c107be4710695634f18fc40ab"
+    endpoint_secret = ENV['SIGNING_SECRET']
     payload = request.body.read
     sig_header = request.env['HTTP_STRIPE_SIGNATURE']
     event = nil
@@ -57,13 +57,15 @@ class WebhooksController < ApplicationController
           email: customer_email ,
           order_id:checkout_session.id ,
            item_id:current_product.metadata.item_id.to_i ,
+           secID:current_product.metadata.sec_id.to_i,
             item_name:n.description ,
              quantity:n.quantity.to_i ,
               charge:n.amount_total.to_i ,
                address:"N/A",
                 rate_id:"N/A" ,
                 shipment_id:"N/A" ,
-                 carrier_acct_id:"N/A" )
+                 carrier_acct_id:"N/A" ,
+                 session_identity: shipping_details.session_identity )
           if current_product.metadata.item_id.to_i != 0
           object = Product.find(current_product.metadata.item_id.to_i) 
           object.quantity = object.quantity - n.quantity.to_i
@@ -88,7 +90,8 @@ class WebhooksController < ApplicationController
                address: shipping_details.street + " " + shipping_details.city  + " " + shipping_details.state + " " + shipping_details.zip ,
                 rate_id: shipping_details.rate_id ,
                  shipment_id: shipping_details.shipment_id ,
-                  carrier_acct_id: shipping_details.carrier_acct_id )
+                  carrier_acct_id: shipping_details.carrier_acct_id ,
+                  session_identity: shipping_details.session_identity  )
        
       
       

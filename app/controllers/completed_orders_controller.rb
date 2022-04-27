@@ -1,5 +1,7 @@
 class CompletedOrdersController < ApplicationController
   before_action :set_completed_order, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+  
   layout 'portal'
   # GET /completed_orders or /completed_orders.json
   def index
@@ -17,6 +19,7 @@ class CompletedOrdersController < ApplicationController
   def show
     id_to_lookup = params[:show]
     id_to_lookup = id_to_lookup[:sessioninfo]
+    @all_images = Image.all
     @show_full_order = CompletedOrder.where(order_id: id_to_lookup )
   end
 
@@ -80,6 +83,6 @@ class CompletedOrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def completed_order_params
-      params.require(:completed_order).permit(:name, :email, :sessioninfo, :order_id, :item_id, :item_name, :quantity, :charge, :address, :rate_id, :shipment_id, :carrier_acct_id)
+      params.require(:completed_order).permit(:name, :email, :sessioninfo, :order_id, :item_id, :item_name, :quantity, :charge, :address, :rate_id, :shipment_id, :carrier_acct_id, :session_identity, :secID)
     end
 end

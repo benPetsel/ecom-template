@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_09_201710) do
+ActiveRecord::Schema.define(version: 2022_04_27_022934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
@@ -58,6 +58,48 @@ ActiveRecord::Schema.define(version: 2022_04_09_201710) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "email"
+    t.string "session_identity"
+    t.integer "secID"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "sesh_id"
+    t.integer "item_id"
+    t.integer "secondary_id"
+    t.boolean "purchased"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "managements", force: :cascade do |t|
+    t.boolean "contact_page"
+    t.boolean "about_page"
+    t.text "about_text"
+    t.text "shop_text"
+    t.boolean "phone_card"
+    t.text "phone_card_text"
+    t.string "phone"
+    t.string "brand_name"
+    t.boolean "email_card"
+    t.text "email_card_text"
+    t.string "email"
+    t.boolean "buisness_card"
+    t.text "buisness_address"
+    t.text "address_card_text"
+    t.text "footer_text"
+    t.text "home_page_text"
+    t.boolean "testimonials"
+    t.string "testimonial_1_name"
+    t.text "testimonial_1_text"
+    t.string "testimonial_2_name"
+    t.text "testimonial_2_text"
+    t.string "testimonial_3_name"
+    t.text "testimonial_3_text"
+    t.string "twitter"
+    t.string "facebook"
+    t.string "instagram"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -76,6 +118,20 @@ ActiveRecord::Schema.define(version: 2022_04_09_201710) do
     t.integer "width"
     t.integer "height"
     t.integer "weight"
+    t.string "secondary_heading"
+    t.boolean "photos_attached"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at", precision: 6
+    t.datetime "remember_created_at", precision: 6
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

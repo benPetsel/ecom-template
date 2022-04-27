@@ -2,7 +2,7 @@
 <% item = @products.find(id[0])%>
 
 
-<div class="flex m-10 max-w-lg lg:mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+<div class="flex md:m-10 m-5 max-w-lg lg:mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
 <div class="w-1/3 bg-cover" >
 <%= image_tag item.image, style: "width: 200px", class: "mx-auto" %>
 </div>
@@ -16,20 +16,53 @@
                     
                      </div>
 
-                    <div class="flex justify-between mt-3 item-center">
-                        <h1 id=<%= id[1] %> class="total_calculate text-lg font-bold text-gray-700 dark:text-gray-200 md:text-xl">
+                    <div class="flex flex-col md:flex-row justify-between mt-3 item-center">
+                        <h1 id=<%= id[1]["quan"] %> class="total_calculate text-lg font-bold text-gray-700 dark:text-gray-200 md:text-xl">
                         $<%= item.price %>
                         </h1>
                         
                          <%= button_to "Remove from cart", delete_item_path(item.id), method: :post, class: "px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600" %>
                     </div>
+                <% if id[1]["has_pic"] %>
+                        <% id[1]["sec_id"].each do |second_id| %>
+                                <% pic_item = @all_images.where(:sesh_id => @session_id ).where(:item_id => id[0] ).where(:secondary_id => second_id).first %>
+                                
+                                <% if pic_item %>
+                                        <div class="border rounded border-gray-300">
+                                        <%= image_tag pic_item.image_for_item, style: "width: 50px", class: "mx-auto" %>
+                                        <div class="inline-block ml-2">
+                                                <%= button_to 'Remove Image', image_path(pic_item), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+                                         </div>
+                                        </div>
+                                <%else%>
+                                        <div class="border rounded border-gray-300">
+                                                <%= form_with(model: @image, class: "contents") do |form| %>
+                                                <div>
+                                                        <%= form.label :image_for_item, class: "text-gray-700 dark:text-gray-200" %>
+                                                        <br>
+                                                        <%= form.file_field :image_for_item , :onchange => 'this.form.submit()' %>
+                                                        
+                                                
+                                                        <%= form.hidden_field :sesh_id , :value => @session_id  %>
+                                                        <%= form.hidden_field :item_id , :value =>  id[0]  %>
+                                                        <%= form.hidden_field :secondary_id , :value =>  second_id %>
+                                                        <%= form.hidden_field :purchased , :value =>  false  %>
+                                                </div>
+                                                <%end%>
+                                        </div>
+                                <%end%>
+
+                        
+                        <%end%>
+                <%end%>
+
             </div>
             <div class="flex bg-gray-600">
             <div class="flex flex-col  h-full justify-between">
             <%= button_to "",  add_one_path(item.id), class: "bi bi-chevron-up basis-1/3 w-10 h-10  text-2xl px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600" %>
                 
             <div class="grid  w-full mx-auto basis-1/3 " >
-            <h2 class="text-white text-xl place-self-center"><%= id[1] %></h2>
+            <h2 class="text-white text-xl place-self-center"><%= id[1]["quan"] %></h2>
             </div>
             <%= button_to "", sub_one_path(item.id), class: "bi bi-chevron-down basis-1/3 w-10 h-10 text-2xl px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600" %>
                 
@@ -37,5 +70,6 @@
             </div>
             </div>
         </div>
+        
                 
 <%end%>

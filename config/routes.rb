@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  resources :managements
+  resources :images
+  devise_for :users , :controllers => {:registrations => "users/registrations"}
   resources :completed_orders
   resources :products
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_scope :user do
+    get "/sign_up" => "users/registrations#new", as: "custom_user_registration" # custom path to sign_up/registration
+  end
 root "store#index"
  post "store/add_to_cart/:id", to: "store#add_to_cart", as: 'add_to_cart'
  post "store/delete_item/:id", to: "store#delete_item", as: 'delete_item'
@@ -11,6 +17,7 @@ root "store#index"
  post "store/create", to: "store#create", as: 'store_create'
  get 'show', to: 'completed_orders#show', as: 'completed_orders_show'
  get 'contact', to: 'store#contact', as: 'contact'
+ get 'about', to: 'store#about', as: 'about'
  get 'store/store_show/:id', to: 'store#store_show', as: 'store_show'
 
  get 'cancel', to: 'store#cancel', as: 'store_cancel'

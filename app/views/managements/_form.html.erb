@@ -1,0 +1,166 @@
+<%= form_with(model: management, class: "contents") do |form| %>
+  <% if management.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(management.errors.count, "error") %> prohibited this management from being saved:</h2>
+
+      <ul>
+        <% management.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div>
+    <%= form.label :logo, class: "text-gray-700 dark:text-gray-200" %>
+    <br>
+    <%= form.file_field :logo %>
+    <p>*if your logo looks blury when displayed it is likely because the file chosen is to large and is being scaled down.  
+    <br>
+    Try to reduce your logos size.  It will be scaled down to an 80 pixel height. Images with around 200 pixel height seem to work fine. </p>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :brand_name %>
+    <%= form.text_field :brand_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :contact_page %>
+    <%= form.check_box :contact_page, class: "block mt-2 h-5 w-5" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :about_page %>
+    <%= form.check_box :about_page, class: "block mt-2 h-5 w-5" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :about_text %>
+    <!-- <p>Type &lt;br&gt;  between blocks of text to create space between paragraphs </p>-->
+    <%= form.text_area :about_text, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div>
+    <%= form.label :about_pic, class: "text-gray-700 dark:text-gray-200" %>
+    <br>
+    <%= form.file_field :about_pic %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :shop_text %>
+    <%= form.text_area :shop_text, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :phone_card %>
+    <%= form.check_box :phone_card, class: "block mt-2 h-5 w-5" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :phone_card_text %>
+    <%= form.text_area :phone_card_text, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :phone %>
+    <%= form.text_field :phone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  
+
+  <div class="my-5">
+    <%= form.label :email_card %>
+    <%= form.check_box :email_card, class: "block mt-2 h-5 w-5" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :email_card_text %>
+    <%= form.text_area :email_card_text, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :buisness_card %>
+    <%= form.check_box :buisness_card, class: "block mt-2 h-5 w-5" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :buisness_address %>
+    <%= form.text_area :buisness_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :address_card_text %>
+    <%= form.text_area :address_card_text, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :footer_text %>
+    <%= form.text_area :footer_text, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :home_page_text %>
+    <%= form.text_area :home_page_text, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :testimonials %>
+    <%= form.check_box :testimonials, class: "block mt-2 h-5 w-5" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :testimonial_1_name %>
+    <%= form.text_field :testimonial_1_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :testimonial_1_text %>
+    <%= form.text_area :testimonial_1_text, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :testimonial_2_name %>
+    <%= form.text_field :testimonial_2_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :testimonial_2_text %>
+    <%= form.text_area :testimonial_2_text, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :testimonial_3_name %>
+    <%= form.text_field :testimonial_3_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :testimonial_3_text %>
+    <%= form.text_area :testimonial_3_text, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :twitter %>
+    <%= form.text_field :twitter, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :facebook %>
+    <%= form.text_field :facebook, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :instagram %>
+    <%= form.text_field :instagram, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit "Update Website",  class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
