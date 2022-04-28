@@ -12,10 +12,10 @@
   <% end %>
 
 
-<section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+<section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md darkklbg-gray-800">
 
   <div>
-    <%= form.label :image, class: "text-gray-700 dark:text-gray-200" %>
+    <%= form.label :image, class: "text-gray-700 darkkltext-gray-200" %>
     <br>
     <%= form.file_field :image %>
   </div>
@@ -23,7 +23,7 @@
 
 
   <div>
-    <%= form.label :secondary_image,"Secondary Image ", class: "text-gray-700 dark:text-gray-200" %>
+    <%= form.label :secondary_image,"Secondary Image ", class: "text-gray-700 darkkltext-gray-200" %>
     <br>
     <%= form.file_field :secondary_image %>
   </div>
@@ -31,60 +31,60 @@
   <br>
   
   <div>
-    <%= form.label :name,"Name", class: "text-gray-700 dark:text-gray-200" %>
-    <%= form.text_field :name, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+    <%= form.label :name,"Name", class: "text-gray-700 darkkltext-gray-200" %>
+    <%= form.text_field :name, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" %>
   </div>
 
   <div>
-    <%= form.label :secondary_heading,"Secondary Heading", class: "text-gray-700 dark:text-gray-200" %>
-    <%= form.text_field :secondary_heading, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+    <%= form.label :secondary_heading,"Secondary Heading", class: "text-gray-700 darkkltext-gray-200" %>
+    <%= form.text_field :secondary_heading, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" %>
   </div>
 
   <div >
     <%= form.label :catagory, style: "display: block" %>
     <%= form.select :catagory, ['option1', 'option2', 'option3', 'option4' ], 
-  {}, { class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" }  %>
+  {}, { class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" }  %>
   </div>
 
   <div>
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+    <%= form.text_area :description, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" %>
   </div>
 
   <div>
     <%= form.label :price, style: "display: block" %>
-    <%= form.number_field :price, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+    <%= form.number_field :price, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" %>
   </div>
 
   <div>
     <%= form.label :old_price,"Old Price (if none put: 0 )", style: "display: block" %>
-    <%= form.number_field :old_price, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+    <%= form.number_field :old_price, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" %>
   </div>
 
   <div>
     <%= form.label :quantity, style: "display: block" %>
-    <%= form.number_field :quantity, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"  %>
+    <%= form.number_field :quantity, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring"  %>
   </div>
   <br>
 
   <div>
     <%= form.label :length,"Length(inches)", style: "display: block" %>
-    <%= form.number_field :length, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+    <%= form.number_field :length, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" %>
   </div>
 
   <div>
     <%= form.label :width,"Width(inches)", style: "display: block" %>
-    <%= form.number_field :width, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+    <%= form.number_field :width, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" %>
   </div>
   
   <div>
     <%= form.label :height,"Height(inches)", style: "display: block" %>
-    <%= form.number_field :height, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+    <%= form.number_field :height, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" %>
   </div>
 
   <div>
     <%= form.label :weight,"Weight(Pounds)", style: "display: block" %>
-    <%= form.number_field :weight, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" %>
+    <%= form.number_field :weight, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" %>
   </div>
   
 <br>
