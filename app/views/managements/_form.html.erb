@@ -160,6 +160,41 @@
     <%= form.text_field :instagram, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
+
+  <div class="my-10 rounded-lg bg-yellow-200 border border-gray-500 ">
+  <p class="text-lg">Shipping Information</p>
+  <p class="text-md">Add the location you will be sending packages from</p>
+
+    
+
+     <div class="my-5">
+      <%= form.label :ship_company, "Your Company Name" %>
+      <%= form.text_field :ship_company, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :ship_street , "Shipping Street" %>
+      <%= form.text_field :ship_street, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :ship_city , "Shipping City" %>
+      <%= form.text_field :ship_city, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :ship_state , "Shipping State ( two letter format ex: FL )" %>
+      <%= form.text_field :ship_state, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :ship_zip , "Shipping Zip" %>
+      <%= form.text_field :ship_zip, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+  
+  </div>
+
   <div class="inline">
     <%= form.submit "Update Website",  class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>

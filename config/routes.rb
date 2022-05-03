@@ -28,6 +28,8 @@ root "store#index"
   mount StripeEvent::Engine, at: '/stripe-webhooks'
   resources :webhooks, only: [:create]
   post "/webhook", to: "webhooks#create"
+
+  post "completed_orders/mark/:id", to: "completed_orders#mark", as: 'mark'
   # Defines the root path route ("/")
   # root "articles#index"
 end

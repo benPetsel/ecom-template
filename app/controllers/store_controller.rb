@@ -430,7 +430,7 @@ end
 
 def shipping_info
   session[:shipmentrate] = {}
-
+  owner_shipping = Management.first
 
   toAddress = EasyPost::Address.create(
     verify: ["delivery"],
@@ -449,13 +449,12 @@ if toAddress.verifications.delivery.success
       #change to env variable adress and switch 
       #create to .new I think -- Check on this!
       fromAddress = EasyPost::Address.create(
-        company: 'EasyPost',
-        street1: '417 Montgomery Street',
-        street2: '5th Floor',
-        city: 'San Francisco',
-        state: 'CA',
-        zip: '94104',
-        phone: '415-528-7555'
+        company: owner_shipping.ship_company,
+        street1: owner_shipping.ship_street,
+        city:  owner_shipping.ship_city,
+        state: owner_shipping.ship_state,
+        zip: owner_shipping.ship_zip,
+  
       )
 
      length_width_height_weight = package_size()

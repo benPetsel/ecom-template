@@ -73,6 +73,7 @@ class ManagementsController < ApplicationController
       :phone_card, :phone_card_text, :phone, :brand_name, :email_card, :email_card_text, :email, 
       :buisness_card, :buisness_address, :address_card_text, :footer_text, :home_page_text, :testimonials, 
       :testimonial_1_name, :testimonial_1_text, :testimonial_2_name, :testimonial_2_text, :testimonial_3_name, 
-      :testimonial_3_text, :twitter, :facebook, :instagram, :about_pic, :logo)
+      :testimonial_3_text, :twitter, :facebook, :instagram, :about_pic, :logo, :ship_zip, :ship_state , :ship_city , :ship_company,
+      :ship_street)
     end
 end

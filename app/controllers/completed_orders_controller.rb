@@ -17,10 +17,10 @@ class CompletedOrdersController < ApplicationController
 
   # GET /completed_orders/1 or /completed_orders/1.json
   def show
-    id_to_lookup = params[:show]
-    id_to_lookup = id_to_lookup[:sessioninfo]
+    @id_to_lookup = params[:show]
+    @id_to_lookup = @id_to_lookup[:sessioninfo]
     @all_images = Image.all
-    @show_full_order = CompletedOrder.where(order_id: id_to_lookup )
+    @show_full_order = CompletedOrder.where(order_id: @id_to_lookup )
   end
 
   # GET /completed_orders/new
@@ -70,6 +70,18 @@ class CompletedOrdersController < ApplicationController
     end
   end
 
+  def mark
+puts params[:id]
+order_to_mark_done = CompletedOrder.where(order_id: params[:id] )
+order_to_mark_done.each do |item|
+  item.order_completed = true
+  item.save!
+end
+
+
+redirect_to completed_orders_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_completed_order
@@ -83,6 +95,8 @@ class CompletedOrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def completed_order_params
-      params.require(:completed_order).permit(:name, :email, :sessioninfo, :order_id, :item_id, :item_name, :quantity, :charge, :address, :rate_id, :shipment_id, :carrier_acct_id, :session_identity, :secID)
+      params.require(:completed_order).permit(:name, :email, :sessioninfo, :order_id, 
+      :item_id, :item_name, :quantity, :charge, :address, :rate_id, :shipment_id, 
+      :carrier_acct_id, :session_identity, :secID, :order_completed)
     end
 end

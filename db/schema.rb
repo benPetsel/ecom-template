@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_27_022934) do
+ActiveRecord::Schema.define(version: 2022_05_02_235414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2022_04_27_022934) do
     t.string "email"
     t.string "session_identity"
     t.integer "secID"
+    t.boolean "order_completed"
   end
 
   create_table "images", force: :cascade do |t|
@@ -100,6 +101,11 @@ ActiveRecord::Schema.define(version: 2022_04_27_022934) do
     t.string "instagram"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "ship_company"
+    t.string "ship_city"
+    t.string "ship_state"
+    t.string "ship_zip"
+    t.string "ship_street"
   end
 
   create_table "products", force: :cascade do |t|
@@ -120,6 +126,7 @@ ActiveRecord::Schema.define(version: 2022_04_27_022934) do
     t.integer "weight"
     t.string "secondary_heading"
     t.boolean "photos_attached"
+    t.boolean "visible"
   end
 
   create_table "users", force: :cascade do |t|
