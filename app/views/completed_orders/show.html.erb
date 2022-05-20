@@ -4,7 +4,9 @@
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
-
+<%= @show_full_order.first.name %>
+<br>
+<%= @show_full_order.first.email %>
     <div class=" flex flex-col py-10  shadow-md sm:rounded-lg">
       <table>
   <thead class="bg-gray-400 darkklbg-gray-700">
@@ -45,8 +47,13 @@
       <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
       ><%= order.charge.to_f / 100.0 %></td>
       
+      <% if order.recipient %>
       <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
-      ><%= order.address %></td>
+      ><%= order.recipient + " " + order.address %></td>
+      <%else%>
+      <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
+      ><%=  order.address %></td>
+      <%end%>
 
       <%if order.secID %>
           <%if order.secID > 0%>
@@ -58,7 +65,10 @@
       <%end%>
       
       <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
-      ><%= order.shipment_id %></td>
+      ><%= order.shipment_id %>
+      <br>
+      <%= order.carrier_acct_id %>
+      </td>
 
       </tr>
     <%end%>

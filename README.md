@@ -65,7 +65,7 @@ https://dev.to/maxencehenneron/handling-stripe-webhooks-with-ruby-on-rails-4bb7
 
       to do:
 
-      !!enviroment variables!!
+      
 
         
 
@@ -84,7 +84,8 @@ https://dev.to/maxencehenneron/handling-stripe-webhooks-with-ruby-on-rails-4bb7
           },
         },
 
-
+      DONE - FIX visible option to not required
+      DONE - !!enviroment variables!!
       DONE -  add shipping description duration to shipment rates
       DONE - seed master pass
       DONE - seed cms
@@ -117,7 +118,7 @@ https://dev.to/maxencehenneron/handling-stripe-webhooks-with-ruby-on-rails-4bb7
         
         LATER - controll image upload size
         LATER - visual style with data-aos
-        LATER -add home page with featured option?
+        LATER - add home page with featured option?
 
 
     MIGHT BE ABLE TO SKIP -- add table to host checkout ids, completed shipping booleen and new bool. 
@@ -131,7 +132,24 @@ https://dev.to/maxencehenneron/handling-stripe-webhooks-with-ruby-on-rails-4bb7
 
       same tut to add amazon buckets for multi picture upload management -- https://www.honeybadger.io/blog/rails-app-aws-s3/
 
-       
+       pixiset - website for photographers can I sell?
+
+DONE -- fix ssl issue
+DONE -- product visible remove required
+DONE -- delete secondary photo
+DONE -- show photos on edit screen
+DONE -- pounds to oz for product weight
+DONE -- option to show or hide dementions
+DONE -- shipping details on compled orders
+DONE -- name of person on compled details 
+name of person to mailing checkout. 
+add change log in logged in 
+
+!!! order of products !!!
+gallary 
+options for products 
+add google reviews??
+Add sales tax option?? 
 
      
       

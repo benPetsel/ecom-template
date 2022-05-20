@@ -97,6 +97,6 @@ redirect_to completed_orders_path
     def completed_order_params
       params.require(:completed_order).permit(:name, :email, :sessioninfo, :order_id, 
       :item_id, :item_name, :quantity, :charge, :address, :rate_id, :shipment_id, 
-      :carrier_acct_id, :session_identity, :secID, :order_completed)
+      :carrier_acct_id, :session_identity, :secID, :order_completed, :recipient)
     end
 end

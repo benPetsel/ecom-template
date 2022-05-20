@@ -320,13 +320,15 @@ fixed_data = JSON.parse(data)
         display_name: shipping_service,
         
         metadata: {
+          recp_name: session[:forminfo]['recp_name'] ,
           street: session[:forminfo]['street'] ,
           city: session[:forminfo]['city'] ,
           state: session[:forminfo]['state'], 
           zip: session[:forminfo]['zip'] ,
           rate_id: shipping_rate_id ,
           shipment_id: shipping_shipment_id ,
-          carrier_acct_id: shipping_carrier_account_id ,
+          # carrier_acct_ids previous value was: shipping_carrier_account_id  it has been replaced with the service name as it is currently unused
+          carrier_acct_id: shipping_service ,
           session_identity: session.id 
 
         }
@@ -434,7 +436,7 @@ def shipping_info
 
   toAddress = EasyPost::Address.create(
     verify: ["delivery"],
-  company: 'EasyPost',
+  company: params[:recp_name],
   street1: params[:street],
   city: params[:city],
   state: params[:state],
@@ -485,16 +487,18 @@ if toAddress.verifications.delivery.success
       puts(rate.id)
     end
 
-
+    
     puts "dimentions below"
     puts length_width_height_weight 
     session[:shipmentrate] = shipment.id
+    session[:forminfo]['recp_name'] = params[:recp_name] 
     session[:forminfo]['street'] = params[:street] 
     session[:forminfo]['city'] = params[:city]
     session[:forminfo]['state'] = params[:state]
     session[:forminfo]['zip'] = params[:zip]
 else
   session[:shipmentrate] = nil
+  session[:forminfo]['recp_name'] = params[:recp_name] 
   session[:forminfo]['street'] = params[:street] 
   session[:forminfo]['city'] = params[:city]
   session[:forminfo]['state'] = params[:state]

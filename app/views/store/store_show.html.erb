@@ -26,7 +26,7 @@
             <p class="text-lg py-5 pr-10 "><%=@product.description%></p>
 
          
-            
+            <% if @product.dimensions_show %>
             <div class="flex flex-row text-xs my-5">
                     <i class="basis-1/5 bi bi-rulers text-gray-500 text-xl pt-5" ></i>
                     <div class="basis-2/5">
@@ -35,9 +35,12 @@
                     </div>
                     <div class="basis-2/5">
                     <h3 class="my-3 uppercase">Height: <%=@product.height%> inches</h3>
-                    <h3 class="my-3 uppercase">Weight: <%=@product.weight%>lbs</h3>
+                    <h3 class="my-3 uppercase">Weight: <%=@product.weight%>oz</h3>
                     </div>
             </div>
+            <% end %>
+
+
             <div>
              <%= button_to @button_text, @path, method: @get_post, class:
               @class,

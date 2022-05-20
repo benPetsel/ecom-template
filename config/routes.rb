@@ -19,7 +19,7 @@ root "store#index"
  get 'contact', to: 'store#contact', as: 'contact'
  get 'about', to: 'store#about', as: 'about'
  get 'store/store_show/:id', to: 'store#store_show', as: 'store_show'
-
+get 'products/delete_second/:id', to: 'products#delete_second' , as: 'delete_second'
  get 'cancel', to: 'store#cancel', as: 'store_cancel'
   get 'success', to: 'store#success', as: 'store_success'
 

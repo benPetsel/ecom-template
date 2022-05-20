@@ -19,6 +19,12 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+  def delete_second
+    this_photo = Product.find(params[:id])
+    this_photo.secondary_image.purge
+    redirect_back(fallback_location: products_path)
+  end
+
   # GET /products/1/edit
   def edit
   end
@@ -71,6 +77,6 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:height, :width, :length, :weight,  :name, :catagory, 
       :description, :price, :old_price, :on_sale, :sold_out, :featured, :quantity, :image, 
-      :secondary_image, :secondary_heading, :photos_attached, :visible)
+      :secondary_image, :secondary_heading, :photos_attached, :visible, :dimensions_show)
     end
 end

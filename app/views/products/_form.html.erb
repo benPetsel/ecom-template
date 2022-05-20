@@ -18,6 +18,12 @@
     <%= form.label :image, class: "text-gray-700 darkkltext-gray-200" %>
     <br>
     <%= form.file_field :image %>
+
+    <% if  product.image.attached?%>
+    <div class="w-40 ">
+    <%= image_tag @product.image, class: "mx-auto " %>
+    </div>
+    <%end%>
   </div>
 
 
@@ -26,14 +32,24 @@
     <%= form.label :secondary_image,"Secondary Image ", class: "text-gray-700 darkkltext-gray-200" %>
     <br>
     <%= form.file_field :secondary_image %>
+
+    <% if  product.secondary_image.attached?%>
+    <div class="w-40 ">
+    <%= image_tag @product.secondary_image, class: "mx-auto w-40" %>
+    </div>
+    <%= link_to "Remove Second image", delete_second_path(product.id), class: "m-2 px-2 text-center font-medium text-white transition-colors duration-200 transform bg-red-600 rounded-md hover:bg-red-500" %>
+
+    <%end%>
   </div>
+
+  
 
   <br>
   
 
   <div>
     <%= form.label :visible,"Make product Visible?", class: "text-gray-700 darkkltext-gray-200" %>
-    <%= form.check_box :visible, required: true %>
+    <%= form.check_box :visible %>
   </div>
 
 <br>
@@ -74,6 +90,14 @@
   </div>
   <br>
 
+
+  <div>
+    <%= form.label :dimensions_show,"Show dimentions on product?", class: "text-gray-700 darkkltext-gray-200" %>
+    <%= form.check_box :dimensions_show %>
+  </div>
+
+  
+
   <div>
     <%= form.label :length,"Length(inches)", style: "display: block" %>
     <%= form.number_field :length, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" %>
@@ -90,7 +114,7 @@
   </div>
 
   <div>
-    <%= form.label :weight,"Weight(Pounds)", style: "display: block" %>
+    <%= form.label :weight,"Weight(in Ounces)", style: "display: block" %>
     <%= form.number_field :weight, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" %>
   </div>
   
