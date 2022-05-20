@@ -151,6 +151,6 @@ options for products
 add google reviews??
 Add sales tax option?? 
 
-     
+error handling for boxes over 28 inches AND box size inputs for owner.      
       
 
