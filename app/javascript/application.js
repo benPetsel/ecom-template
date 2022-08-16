@@ -3,7 +3,7 @@ import "@hotwired/turbo-rails"
 import "controllers"
 
 
-
+			
 				const btn = document.querySelector("button.mobile-menu-button");
 				const menu = document.querySelector(".mobile-menu");
 
@@ -22,6 +22,9 @@ import "controllers"
 					}
 				}
 
+				
+				
+				
 
 				
 				

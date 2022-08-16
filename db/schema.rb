@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_20_005359) do
+ActiveRecord::Schema.define(version: 2022_08_16_001628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
@@ -107,6 +107,9 @@ ActiveRecord::Schema.define(version: 2022_05_20_005359) do
     t.string "ship_state"
     t.string "ship_zip"
     t.string "ship_street"
+    t.float "tax_rate"
+    t.string "title_tag"
+    t.string "categories"
   end
 
   create_table "products", force: :cascade do |t|

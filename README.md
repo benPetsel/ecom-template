@@ -151,6 +151,14 @@ options for products
 add google reviews??
 Add sales tax option?? 
 
-error handling for boxes over 28 inches AND box size inputs for owner.      
+error handling for boxes over 28 inches AND box size inputs for owner. 
+fix ecomtemp in tab + image controll for that thing 
+    
       
+
+add categories-list to managements
+add manipulation of categories-list to management-form via Jquery or js
+reference category-list in product edit form to propigate options/category it belongs to
+What if something belongs to multiple categories?
+Use for.each method on managements categories-list to auto genterate the filter object (allready functional) at the top of the shop page
 

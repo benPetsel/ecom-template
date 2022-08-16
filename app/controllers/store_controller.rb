@@ -43,6 +43,8 @@ class StoreController < ApplicationController
   def index
     @products = Product.all
     total_num_products = @products.count
+    cat_shop_text = @content.categories 
+   @cat_shop_arr = cat_shop_text.split(',')
 
     #this handy thing sets the column number to be the most apetising :)
      if total_num_products > 5
@@ -90,7 +92,7 @@ end
 
 def store_show
   @product =  Product.find(params[:id]) 
-
+    
   if @product.sold_out? || @product.quantity < 1
     @button_text = "Sold Out"
     @path = store_show_path(@product.id)
@@ -150,6 +152,8 @@ def delete_item
 end
 
 def add_one
+  
+  
   session[:shipmentrate] = nil
   this_product =  Product.find(params[:id]) 
   purchase_quantity = session[:cart][params[:id]]["quan"]
@@ -212,7 +216,7 @@ fixed_data = JSON.parse(data)
   else
   @cartItems = []
   @salesTax = 0
-  tax_rate = 0.07
+  tax_rate = @content.tax_rate.to_f / 100
   @zipfromDB = ""
   @adressDesk = ""
   @phoneDesk = ""

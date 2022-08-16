@@ -10,14 +10,43 @@
 <div class="flex flex-col w-screen min-h-screen p-10 bg-white text-gray-800">
 <!-- replace any cols number with <%=@collm%> for dynamic loading on larger screens
 reminder: it does its best to get a grid with no overflow either 3 , 4 or 5 columns -->
-    <div id="store_products"  class="grid 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-6 gap-y-12 w-full mt-6">
+            <% if @cat_shop_arr.length() > 0 %>
+            <center><div>
+            <button class=" mx-2 px-2 data-filter filter-active" onclick="filterClick('all')" >All</button>
+                <% @cat_shop_arr.each do |cat| %>
+                        <button class="mx-2 px-2 data-filter" onclick="filterClick('<%= cat%>')" ><%= cat.gsub("_", " ") %></button>
+                    
+                <%end%>
+            </div></center>
+            <%end%>
+              
+            
+            
+    <div id="store_products"  class="grid 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-6 gap-y-12 w-full mt-6">   
         <%= render "allstoreproducts" %>
-        <div>
+    <div>
 
 </div>
     </div>
 </div>
 </main>
+
+<script>
+
+function filterClick(category){
+        $(".all").addClass("hide");
+        $(".all").removeClass("show");
+        $('.' + category).toggleClass("hide");
+        $('.' + category).toggleClass("show");    
+}
+
+$(".data-filter").click(function(){
+     $(".filter-active").toggleClass("filter-active");
+        $(this).toggleClass("filter-active");
+});
+
+</script>
+
 
 
 

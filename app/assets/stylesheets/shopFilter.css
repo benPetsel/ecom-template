@@ -1,0 +1,18 @@
+.option1 {
+
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: grid;
+}
+
+.filter-active {
+    border-color: rgb(78, 78, 78);
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+}

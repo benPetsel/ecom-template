@@ -27,6 +27,16 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :title_tag %>
+    <%= form.text_field :title_tag, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+      <%= form.label :tax_rate , "Tax Rate" %>
+      <%= form.number_field :tax_rate, :step => "0.01", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+  <div class="my-5">
     <%= form.label :contact_page %>
     <%= form.check_box :contact_page, class: "block mt-2 h-5 w-5" %>
   </div>
@@ -52,6 +62,16 @@
     <%= form.label :shop_text %>
     <%= form.text_area :shop_text, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
+
+  <div class="my-5 bg-cyan-200 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full">
+      <%= form.label :categories , "Categories" %>
+      <%= form.hidden_field :categories, class: "" , id: "categories" %>
+      <ul id="current_cats" class="flex flex-wrap space-x-2">
+      </ul>
+      <input id="new_category" type="text" placeholder="New Category" />
+      <button type="button" onclick="addnewcategory()">Add</button>
+      
+    </div>
 
   <div class="my-5">
     <%= form.label :phone_card %>
@@ -192,6 +212,8 @@
       <%= form.text_field :ship_zip, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
+    
+
   
   </div>
 
@@ -199,3 +221,82 @@
     <%= form.submit "Update Website",  class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
+
+<script>
+
+$( document ).ready(function() {
+    loadCatList();
+});
+
+function addnewcategory(){
+  let new_cat = $("#new_category").val();
+  var cat_text = $("#categories").val();
+  let cat_array = cat_text.split(",");
+  let multispace = false
+  // Entry validation below
+
+    for (let i = 0; i < new_cat.length; i++) {
+      if(new_cat[i] == " " && new_cat[i + 1] == " ") {
+          multispace = true
+      }
+    }
+
+  if(new_cat == "" || cat_array.includes(new_cat) || new_cat.includes(",") || multispace == true){
+
+    if(new_cat == ""){
+      alert("New category can't be blank");
+    }else if(new_cat.includes(",")){
+      alert("Your Category cant contain commas" );
+    }else if(multispace == true){
+      alert("Your New Category must have SINGLE spaces between words" );
+    }else{
+      alert("Your Categories list allready includes " + new_cat );
+    }
+
+  }else{
+
+  // add the new category to the array and convert the array back to comma seperated text
+  new_cat = new_cat.replace(/ /g,"_") 
+  cat_array.push(new_cat);
+  cat_text = "";
+  cat_text = cat_array.toString();
+  $("#categories").val(cat_text);
+  }
+  loadCatList();
+};
+
+function loadCatList(){
+  
+    
+  
+  var cat_text = $("#categories").val();
+  let cat_array = cat_text.split(",");
+  if(cat_array[0] == ""){
+    cat_array.shift();
+  }
+
+  $("#current_cats").empty();
+    $.each(cat_array , function(index, val) { 
+    $("#current_cats").append('<li class="bg-gray-300 rounded-md p-2 my-1">' + val + ' ' +  '<button class="" type="button" onclick="removeCategory(' + index + ')" ><i class="text-slate-50 mx-2 bi bi-x-square"></i></button></li>');
+    });
+ 
+
+};
+
+function removeCategory(cat_to_del){
+
+  var cat_text = $("#categories").val();
+  let cat_array = cat_text.split(",");
+  if(cat_array[0] == ""){
+    cat_array.shift();
+  }
+  
+  cat_array.splice(cat_to_del, 1);
+
+  cat_text = "";
+  cat_text = cat_array.toString();
+  $("#categories").val(cat_text);
+  loadCatList();
+};
+
+</script>
