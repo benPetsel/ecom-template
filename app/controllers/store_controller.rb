@@ -43,8 +43,11 @@ class StoreController < ApplicationController
   def index
     @products = Product.all
     total_num_products = @products.count
-    cat_shop_text = @content.categories 
-   @cat_shop_arr = cat_shop_text.split(',')
+    if @content.categories
+      cat_shop_text = @content.categories 
+      @cat_shop_arr = cat_shop_text.split(',')
+    end
+    
 
     #this handy thing sets the column number to be the most apetising :)
      if total_num_products > 5
