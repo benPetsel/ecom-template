@@ -10,14 +10,16 @@
 <div class="flex flex-col w-screen min-h-screen p-10 bg-white text-gray-800">
 <!-- replace any cols number with <%=@collm%> for dynamic loading on larger screens
 reminder: it does its best to get a grid with no overflow either 3 , 4 or 5 columns   -->
-            <% if @cat_shop_arr.length() > 0 %>
-            <center><div>
-            <button class=" mx-2 px-2 data-filter filter-active" onclick="filterClick('all')" >All</button>
-                <% @cat_shop_arr.each do |cat| %>
-                        <button class="mx-2 px-2 data-filter" onclick="filterClick('<%= cat%>')" ><%= cat.gsub("_", " ") %></button>
-                    
+            <% if @cat_shop_arr %>
+                <% if @cat_shop_arr.length() > 0 %>
+                <center><div>
+                <button class=" mx-2 px-2 data-filter filter-active" onclick="filterClick('all')" >All</button>
+                    <% @cat_shop_arr.each do |cat| %>
+                            <button class="mx-2 px-2 data-filter" onclick="filterClick('<%= cat%>')" ><%= cat.gsub("_", " ") %></button>
+                        
+                    <%end%>
+                </div></center>
                 <%end%>
-            </div></center>
             <%end%>
               
             
