@@ -219,7 +219,11 @@ fixed_data = JSON.parse(data)
   else
   @cartItems = []
   @salesTax = 0
-  tax_rate = @content.tax_rate.to_f / 100
+  if @content.tax_rate
+    tax_rate = @content.tax_rate.to_f / 100
+  else
+    tax_rate = 7.5 / 100
+  end
   @zipfromDB = ""
   @adressDesk = ""
   @phoneDesk = ""
