@@ -15,8 +15,9 @@ reminder: it does its best to get a grid with no overflow either 3 , 4 or 5 colu
                 <center><div>
                 <button class=" mx-2 px-2 data-filter filter-active" onclick="filterClick('all')" >All</button>
                     <% @cat_shop_arr.each do |cat| %>
+                        <%if cat != ""%>
                             <button class="mx-2 px-2 data-filter" onclick="filterClick('<%= cat%>')" ><%= cat.gsub("_", " ") %></button>
-                        
+                        <%end%>
                     <%end%>
                 </div></center>
                 <%end%>
