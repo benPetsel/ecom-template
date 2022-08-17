@@ -63,12 +63,13 @@
     <%= form.text_field :secondary_heading, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" %>
   </div>
 
+  <% if @cat_arr %>
   <div >
     <%= form.label :catagory, style: "display: block" %>
     <%= form.select :catagory, @cat_arr, 
   {}, { class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" }  %>
   </div>
-
+  <%end%>
 
 
   <div>

@@ -27,9 +27,10 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
-   cat_text = @content.categories 
-   @cat_arr = cat_text.split(',')
-
+    if @content.categories 
+      cat_text = @content.categories 
+      @cat_arr = cat_text.split(',')
+    end
   end
 
   # POST /products or /products.json
