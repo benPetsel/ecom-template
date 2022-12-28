@@ -142,7 +142,8 @@ DONE -- pounds to oz for product weight
 DONE -- option to show or hide dementions
 DONE -- shipping details on compled orders
 DONE -- name of person on compled details 
-name of person to mailing checkout. 
+DONE --name of person to mailing checkout. 
+DONE -- corrected new product category issue
 add change log in logged in 
 
 !!! order of products !!!

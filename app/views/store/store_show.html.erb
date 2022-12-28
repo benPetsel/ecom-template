@@ -4,8 +4,8 @@
  
   <%= render "product_photos" %>
  </div>
- <div class="flex basis-1/3 items-center bg-gray-300 mx-5 p-4  ">
-        <div class="w-4/5">
+ <div class="flex basis-1/3  items-center bg-gray-300 mx-5 p-4  ">
+        <div class="w-11/12 h-screen overflow-y-auto ">
             <h1 class="text-5xl font-bold"><%=@product.name%></h1>
             
             <div class="flex flex-row text-3xl font-light px-3 py-5">$<%=@product.price%>
@@ -22,9 +22,13 @@
                      </p>
                      </div>
               <%end%>
-            <div class="flex h-0.5 max-w-lg   bg-slate-500 "></div>
-            <p class="text-lg py-5 pr-10 "><%=@product.description%></p>
+            <div class="flex h-0.5 max-w-lg bg-slate-500 "></div>
+            <p class="text-lg py-5 pr-10 show-read-more "><%=@product.description%></p>
+              <param id="hidden_Color_string" name="" value="<%= @product.color_option_1 %>">
 
+              <ul id="color_options" class="flex flex-wrap space-x-2">
+
+              </ul>
          
             <% if @product.dimensions_show %>
             <div class="flex flex-row text-xs my-5">
@@ -56,6 +60,31 @@
 </div>
 
 <script>
+
+$( document ).ready(function() {
+
+    let Color_Start_arr = TextToArr($("#hidden_Color_string").val());
+    DisplayColorList(Color_Start_arr);
+
+    var maxLength = 280;
+    $(".show-read-more").each(function(){
+        var myStr = $(this).text();
+        if($.trim(myStr).length > maxLength){
+            var newStr = myStr.substring(0, maxLength);
+            var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+            $(this).empty().html(newStr);
+            $(this).append('<br> <a href="javascript:void(0);" class="underline read-more">read more...</a>');
+            $(this).append('<span class="more-text">' + removedStr + '</span>');
+        }
+    });
+    $(".read-more").click(function(){
+        $(this).siblings(".more-text").contents().unwrap();
+        $(this).remove();
+    });
+
+});
+
+
 let slideIndex = 1;
 showSlides(slideIndex);
 
@@ -84,4 +113,35 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 }
+
+
+function TextToArr(test_list){
+
+  let test_arr = test_list.split(",");
+  let final_arr = [];
+  let placeholder = [];
+  if(test_arr[0] == ""){
+    test_arr.shift();
+  }
+
+  $.each(test_arr , function(index, val) { 
+      placeholder.push(val)
+      if(placeholder.length == 2){
+        final_arr.push(placeholder);
+        placeholder = [];
+      }
+    });
+  return final_arr
+};
+
+function DisplayColorList(col_array){
+
+  $("#color_options").empty();
+      $.each(col_array , function(index, val) { 
+      $("#color_options").append('<li class="bg-gray-300 rounded-md p-2 my-1"><span class="dot border-white border-4" style=" height: 50px; width: 50px; background-color: #008BFF; background-image: linear-gradient(to right,' + val[0] + ',' + val[1] + '); border-radius: 50%;"></span></li>');
+      });
+ 
+console.log(col_array);
+}
+
 </script>

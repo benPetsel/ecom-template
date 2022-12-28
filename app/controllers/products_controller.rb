@@ -17,6 +17,10 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+    if @content.categories 
+      cat_text = @content.categories 
+      @cat_arr = cat_text.split(',')
+    end
   end
 
   def delete_second
@@ -81,6 +85,6 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:height, :width, :length, :weight,  :name, :catagory, 
       :description, :price, :old_price, :on_sale, :sold_out, :featured, :quantity, :image, 
-      :secondary_image, :secondary_heading, :photos_attached, :visible, :dimensions_show)
+      :secondary_image, :secondary_heading, :photos_attached, :visible, :dimensions_show, :color_option_1)
     end
 end

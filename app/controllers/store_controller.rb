@@ -71,6 +71,11 @@ def cart
 
   # set var if images have been uploaded to item with require_photos to true
   # allert to fire inside checkout form if no
+
+  @notice_message = @content.cart_notice_inuse
+  if @content.cart_notice
+    @notice_message_text = @content.cart_notice
+  end
   @all_images = Image.all
   @image = Image.new
   @session_id = session.id.to_s

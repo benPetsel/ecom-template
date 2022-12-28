@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_16_001628) do
+ActiveRecord::Schema.define(version: 2022_12_28_151047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
@@ -110,6 +110,8 @@ ActiveRecord::Schema.define(version: 2022_08_16_001628) do
     t.float "tax_rate"
     t.string "title_tag"
     t.string "categories"
+    t.boolean "cart_notice_inuse"
+    t.string "cart_notice"
   end
 
   create_table "products", force: :cascade do |t|
@@ -132,6 +134,7 @@ ActiveRecord::Schema.define(version: 2022_08_16_001628) do
     t.boolean "photos_attached"
     t.boolean "visible"
     t.boolean "dimensions_show"
+    t.string "color_option_1"
   end
 
   create_table "users", force: :cascade do |t|

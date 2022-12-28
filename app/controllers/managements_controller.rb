@@ -74,6 +74,6 @@ class ManagementsController < ApplicationController
       :buisness_card, :buisness_address, :address_card_text, :footer_text, :home_page_text, :testimonials, 
       :testimonial_1_name, :testimonial_1_text, :testimonial_2_name, :testimonial_2_text, :testimonial_3_name, 
       :testimonial_3_text, :twitter, :facebook, :instagram, :about_pic, :logo, :ship_zip, :ship_state , :ship_city , :ship_company,
-      :ship_street, :tax_rate, :title_tag, :categories)
+      :ship_street, :tax_rate, :title_tag, :categories, :cart_notice_inuse, :cart_notice)
     end
 end
