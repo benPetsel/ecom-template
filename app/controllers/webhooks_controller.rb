@@ -58,6 +58,8 @@ class WebhooksController < ApplicationController
           order_id:checkout_session.id ,
            item_id:current_product.metadata.item_id.to_i ,
            secID:current_product.metadata.sec_id.to_i,
+           color_options:current_product.metadata.col_op.to_s,
+           image_count:current_product.metadata.pic_num.to_i,
             item_name:n.description ,
              quantity:n.quantity.to_i ,
               charge:n.amount_total.to_i ,

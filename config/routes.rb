@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 root "store#index"
  post "store/add_to_cart/:id", to: "store#add_to_cart", as: 'add_to_cart'
  post "store/delete_item/:id", to: "store#delete_item", as: 'delete_item'
+ post "store/new_color_choice/:id", to: "store#new_color_choice", as: 'new_color_choice'
+ post "store/edit_options/:id", to: "store#edit_options", as: 'edit_options'
  post "store/add_one/:id", to: "store#add_one", as: 'add_one'
  post "store/sub_one/:id", to: "store#sub_one", as: 'sub_one'
  post "store/shipping_info", to: "store#shipping_info", as: 'shipping_info'

@@ -66,6 +66,6 @@ class ImagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def image_params
-      params.require(:image).permit(:sesh_id, :item_id, :secondary_id, :purchased, :image_for_item)
+      params.require(:image).permit(:sesh_id, :item_id, :secondary_id, :purchased, :instance_number , :image_for_item)
     end
 end

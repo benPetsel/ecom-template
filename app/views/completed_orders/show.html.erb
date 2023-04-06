@@ -8,7 +8,7 @@
 <br>
 <%= @show_full_order.first.email %>
     <div class=" flex flex-col py-10  shadow-md sm:rounded-lg">
-      <table>
+      <table class="border-spacing-x-5 border-collapse border border-slate-400">
   <thead class="bg-gray-400 darkklbg-gray-700">
     <tr>
       <th scope="col" class="py-3 flex-1 basis-1/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase darkkltext-gray-400"
@@ -21,13 +21,16 @@
       >charge</th>
      
       <th scope="col" class="py-3 flex-1 basis-4/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase darkkltext-gray-400"
-      >address</th>
-
-      <th scope="col" class="py-3 flex-1 basis-4/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase darkkltext-gray-400"
       >Attached photo?</th>
 
       <th scope="col" class="py-3 flex-1 basis-4/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase darkkltext-gray-400"
-      >Sipping ID</th>
+      >Color Selection</th>
+
+      <th scope="col" class="py-3 flex-1 basis-4/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase darkkltext-gray-400"
+      >Shipping ID</th>
+
+      <th scope="col" class="py-3 flex-1 basis-4/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase darkkltext-gray-400"
+      >Address</th>
      
       
       
@@ -35,40 +38,115 @@
   </thead>
 
  
-    <tbody>
+    <tbody class="bg-gray-300 ">
     <% @show_full_order.each do |order| %>
- <tr class="bg-white  border-gray-700">
-      <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
+    <tr>
+    <td class="bg-gray-900" ></td>
+    <td class="bg-gray-900" ></td>
+    <td class="bg-gray-900" ></td>
+    <td class="bg-gray-900" ></td>
+    <td class="bg-gray-900" ></td>
+    <td class="bg-gray-900" ></td>
+    <td class="bg-gray-900" ></td>
+    </tr>
+ <tr >
+      <td class="border border-slate-800 py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
       ><%= order.item_name %></td>
       
-      <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
-      ><%= order.order_completed %></td>
+      <td class="border border-slate-800 py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
+      ><%= order.quantity %></td>
       
-      <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
+      <td class="border border-slate-800 py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
       ><%= order.charge.to_f / 100.0 %></td>
       
-      <% if order.recipient %>
-      <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
-      ><%= order.recipient + " -- " + order.address %></td>
-      <%else%>
-      <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
-      ><%=  order.address %></td>
-      <%end%>
-
-      <%if order.secID %>
-          <%if order.secID > 0%>
-              <% pic_item = @all_images.where(:sesh_id => order.session_identity ).where(:item_id => order.item_id ).where(:secondary_id => order.secID).first %>
-              <th scope="col" class="py-3 flex-1 basis-4/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase darkkltext-gray-400">
-              <%= image_tag pic_item.image_for_item, style: "width: 50px", class: "mx-auto" %>
-              </th>
-          <%end%>
-      <%end%>
       
-      <td class="py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
-      ><%= order.shipment_id %>
-      <br>
-      <%= order.carrier_acct_id %>
+
+<!-- Created at is to maintain legacy data that is loaded differently than current update-->
+        <% if order.created_at < @backend_update_date %>
+            <%if order.secID %>
+                <%if order.secID > 0%>
+                    <% pic_item = @all_images.where(:sesh_id => order.session_identity ).where(:item_id => order.item_id ).where(:secondary_id => order.secID).first  %>
+                    <td scope="col" class="border border-slate-800 py-3 flex-1 basis-4/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase darkkltext-gray-400">
+                    <%= image_tag pic_item.image_for_item, style: "width: 50px", class: "mx-auto" %>
+                    </td>
+                <%end%>
+            <%else%>
+                 <td class="border border-slate-800 py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"></td>
+            <%end%>
+        <%else%>
+          <%if order.secID %>
+              <%if order.secID > 0%>
+                  <td scope="col" class="border border-slate-800 py-3 flex-1 basis-4/10 text-xs font-medium tracking-wider text-left text-gray-200 uppercase darkkltext-gray-400">
+                  <ul>
+                   <% order.image_count.to_i.times do |item_sec_id| %>
+                      <% pic_item = @all_images.where(:sesh_id => order.session_identity ).where(:item_id => order.item_id ).where(:instance_number => order.secID).where(:secondary_id => item_sec_id).first %>
+                      <li>
+                      <%= image_tag pic_item.image_for_item, style: "width: 50px", class: "mx-auto" %>
+                     </li>
+                    <%end%>
+                    
+                    </ul>
+                    </td>
+              <%else%>
+                  <td class="border border-slate-800 py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"></td>
+              <%end%>
+
+          <%else%>
+          <td class="border border-slate-800 py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"></td>
+          <%end%>
+
+        <%end%>
+<!-- End of photo code-->
+
+<!-- Begin color selection display code-->
+<% if order.color_options && order.color_options != "N/A" %>
+  <% order_colors = order.color_options.split(",") %>
+  <%if order_colors.length === 3 %>
+      <td class="border border-slate-800 py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white">
+        <ul class="my-1 rounded-md  flex flex-wrap space-x-2">
+          <li id="color" class="bg-gray-200 rounded-md p-2 m-1">
+            <center><span class="dot border-white border-4" style=" height: 50px; width: 50px; background-color: #008BFF; background-image: linear-gradient(to right, <%= order_colors[0] %> ,<%= order_colors[1] %>); border-radius: 50%;"></span></center>  
+            <center><p><%= order_colors[2] %></p> </center>  
+          </li>
+        </ul>
       </td>
+  <%else%>
+  <!-- something might be wrong-->
+  <td class="border border-slate-800 py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white">
+  <p>No selected color</p>
+  </td>
+  
+  <%end%>
+<%else%>
+<!-- no color option-->
+<td class="border border-slate-800 py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white">
+
+</td>
+<%end%>
+<!-- END color selection display code-->
+
+
+      
+      <td class="border border-slate-800 py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
+      >
+      <ul>
+      <li><%= order.shipment_id %></li>
+      <li><%= order.carrier_acct_id %></li>
+      </ul>
+      </td>
+
+      
+
+      <% if order.recipient && order.recipient != "N/A" %>
+      <td class="border border-slate-800 py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
+      ><%= order.recipient + " -- " + order.address %></td>
+      <%elsif order.address != "N/A" %>
+      <td class="border border-slate-800 py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
+      ><%=  order.address %></td>
+      <%else%>
+      <td class="border border-slate-800 py-4 flex-1 basis-1/4 text-sm font-medium text-gray-900 whitespace-nowrap darkkltext-white"
+      ></td>
+      <%end%>
 
       </tr>
     <%end%>

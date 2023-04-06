@@ -82,10 +82,12 @@
       <%= form.hidden_field :color_option_1, class: "" , id: "hid_color_op_1" %>
       <ul id="color_options" class="flex flex-wrap space-x-2">
       </ul>
+      <input id="color_name" class="my-2" type="text"  placeholder="Name this color" /><br>
       <input id="color_1" type="color" onchange="updateHexText()"  value="#ffffff" />
       <input id="hex_1" type="text" onchange="updateColorPallets()" value="#ffffff" /> <br>
       <input id="color_2" type="color" onchange="updateHexText()" value="#ffffff" />
-      <input id="hex_2" type="text" onchange="updateColorPallets()" value="#ffffff" />
+      <input id="hex_2" type="text" onchange="updateColorPallets()" value="#ffffff" /><br>
+      
       <button type="button" onclick="addcoloroption()">Add</button>
       
   </div>
@@ -156,6 +158,11 @@
     <%= form.check_box :photos_attached %>
   </div>
 
+  <div>
+    <%= form.label :image_number,"How many photos should the user upload for this product?", style: "display: block" %>
+    <%= form.number_field :image_number, required: true, class: "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md darkklbg-gray-800 darkkltext-gray-300 darkklborder-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 darkklfocus:border-blue-300 focus:outline-none focus:ring" %>
+  </div>
+
   
 
   <div class="m-2 px-2 py-2 text-center font-medium text-white transition-colors duration-200 transform bg-green-600 rounded-md hover:bg-green-500">
@@ -195,6 +202,7 @@ updateHexText();
 
 function addcoloroption(){
   
+  let col_name = $("#color_name").val();
   let col_op_1 = $("#color_1").val();
   let col_op_2 = $("#color_2").val();
   let current_ops = $("#hid_color_op_1").val();
@@ -202,7 +210,7 @@ function addcoloroption(){
   
   if(col_op_1 && col_op_2){
      // append actual form value with 2 hex values
-      let ops_to_add = ',' + col_op_1 + ',' + col_op_2
+      let ops_to_add = ',' + col_op_1 + ',' + col_op_2 + ',' + col_name
       new_ops = current_ops + ops_to_add
       $("#hid_color_op_1").val(new_ops);
       //convert form value to array
@@ -228,7 +236,7 @@ function TextToArr(test_list){
 
   $.each(test_arr , function(index, val) { 
       placeholder.push(val)
-      if(placeholder.length == 2){
+      if(placeholder.length == 3){
         final_arr.push(placeholder);
         placeholder = [];
       }
@@ -249,6 +257,7 @@ function updateColors(arr_to_save){
     $.each(arr_to_save , function(index, val) { 
         unpacked_arr.push(val[0]);
         unpacked_arr.push(val[1]);
+        unpacked_arr.push(val[2]);
       });
 
       col_op_text = unpacked_arr.toString();
@@ -263,7 +272,7 @@ function DisplayColorList(col_array){
 
   $("#color_options").empty();
       $.each(col_array , function(index, val) { 
-      $("#color_options").append('<li class="bg-gray-300 rounded-md p-2 my-1"><span class="dot border-white border-4" style=" height: 50px; width: 50px; background-color: #008BFF; background-image: linear-gradient(to right,' + val[0] + ',' + val[1] + '); border-radius: 50%;"></span><button class="" type="button" onclick="removeColorOption(' + index + ')" ><i class="text-slate-50 mx-2 bi bi-x-square"></i></button></li>');
+      $("#color_options").append('<li class="bg-gray-300 rounded-md p-2 my-1"><p class="mx-2">' + val[2] + '</p><span class="dot border-white border-4" style=" height: 50px; width: 50px; background-color: #008BFF; background-image: linear-gradient(to right,' + val[0] + ',' + val[1] + '); border-radius: 50%;"></span><button class="" type="button" onclick="removeColorOption(' + index + ')" ><i class="text-slate-50 mx-2 bi bi-x-square"></i></button></li>');
       });
  
 console.log(col_array);

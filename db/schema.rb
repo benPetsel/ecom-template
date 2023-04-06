@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_28_151047) do
+ActiveRecord::Schema.define(version: 2023_04_04_063517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 2022_12_28_151047) do
     t.integer "secID"
     t.boolean "order_completed"
     t.string "recipient"
+    t.string "color_options"
+    t.integer "image_count"
   end
 
   create_table "images", force: :cascade do |t|
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 2022_12_28_151047) do
     t.boolean "purchased"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "instance_number"
   end
 
   create_table "managements", force: :cascade do |t|
@@ -135,6 +138,7 @@ ActiveRecord::Schema.define(version: 2022_12_28_151047) do
     t.boolean "visible"
     t.boolean "dimensions_show"
     t.string "color_option_1"
+    t.integer "image_number"
   end
 
   create_table "users", force: :cascade do |t|

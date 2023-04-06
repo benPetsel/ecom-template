@@ -85,6 +85,6 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:height, :width, :length, :weight,  :name, :catagory, 
       :description, :price, :old_price, :on_sale, :sold_out, :featured, :quantity, :image, 
-      :secondary_image, :secondary_heading, :photos_attached, :visible, :dimensions_show, :color_option_1)
+      :secondary_image, :secondary_heading, :photos_attached, :visible, :dimensions_show, :color_option_1, :image_number)
     end
 end
