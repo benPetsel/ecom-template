@@ -124,13 +124,14 @@ end
 #must be an empty array if there are no options
 
   
-#if  an index is present then we are modifying a product.
+
   if params[:index]
-    #currently_editing bool doesnt do anything currently
     @currently_editing = true
+    @testcookie = session[:cart][params[:id].to_s][params[:index].to_i]
     @selectedColor.push(@testcookie["color_index"].to_s)
     @edit_path = :edit_options
     @edit_index = params[:index]
+
   else
     @currently_editing = false
     @testcookie = 'index does not exist'
